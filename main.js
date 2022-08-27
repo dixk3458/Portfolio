@@ -11,24 +11,28 @@ document.addEventListener('scroll', () => {
   }
 });
 
-// Handle scrolling when tapping  on the navbar menu
-
+// Handle scrolling when tapping on the menu
 const navbarMenu = document.querySelector('.navbar__menu');
 navbarMenu.addEventListener('click', event => {
   const target = event.target;
   const link = target.dataset.link;
-  if (link === null) {
+  if (link == null) {
     return;
-  } else {
-    scrollIntoView(link);
   }
+  scrollIntoView(link);
 });
 
-// Handle click on "contact me" button on home
-
+// Handle click on "Contact Me" button on home
 const homeContactBtn = document.querySelector('.home__contact');
 homeContactBtn.addEventListener('click', () => {
   scrollIntoView('#contact');
+});
+
+// Make home slowly fade to transparnet as the window scrolls down.
+const home = document.querySelector('.home__container');
+const homeHeight = home.getBoundingClientRect().height;
+document.addEventListener('scroll', () => {
+  home.style.opacity = 1 - window.scrollY / homeHeight;
 });
 
 function scrollIntoView(selector) {
